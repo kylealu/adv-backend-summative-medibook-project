@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-size: 14px; fill: #475569; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 1.5; }
+      .head-p { fill: #2563eb; } .head-d { fill: #059669; } .head-a { fill: #7c3aed; }
+      .tname { font-size: 18px; font-weight: 700; fill: #ffffff; }
+      .col { font-size: 13.5px; fill: #0f172a; }
+      .type { font-size: 12.5px; fill: #334155; font-family: Consolas, Menlo, monospace; }
+      .flag { font-size: 11px; fill: #64748b; font-family: Consolas, Menlo, monospace; }
+      .pk { fill: #b45309; font-weight: 700; font-size: 11px; font-family: Consolas, Menlo, monospace; }
+      .fk { fill: #7c3aed; font-weight: 700; font-size: 11px; font-family: Consolas, Menlo, monospace; }
+      .gen { fill: #0e7490; font-weight: 700; font-size: 11px; font-family: Consolas, Menlo, monospace; }
+      .row-alt { fill: #f8fafc; }
+      .sep { stroke: #e2e8f0; stroke-width: 1; }
+      .ck { font-size: 11.5px; fill: #334155; font-family: Consolas, Menlo, monospace; }
+      .ckhead { font-size: 12px; font-weight: 700; fill: #0f172a; }
+      .rel { fill: none; stroke: #0f172a; stroke-width: 1.8; }
+      .card { font-size: 14px; font-weight: 700; fill: #0f172a; }
+      .relabel { font-size: 12px; fill: #475569; font-style: italic; }
+      .callout { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+      .callout-t { font-size: 13px; fill: #78350f; }
+      .callout-h { font-size: 14px; font-weight: 700; fill: #78350f; }
+      .legend { font-size: 12.5px; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="900" fill="#ffffff"/>
+  <text x="40" y="44" class="title">MediBook — Database Schema (3NF)</text>
+  <text x="40" y="66" class="subtitle">MySQL 8 · InnoDB · 3 entities: patients 1 ── N appointments N ── 1 doctors</text>
+
+  <!-- ============================ PATIENTS ============================ -->
+  <rect x="40" y="90" width="380" height="290" rx="8" class="box"/>
+  <path d="M48 90 h364 a8 8 0 0 1 8 8 v32 h-380 v-32 a8 8 0 0 1 8 -8z" class="head-p"/>
+  <text x="56" y="117" class="tname">patients</text>
+
+  <rect x="41" y="156" width="378" height="26" class="row-alt"/>
+  <rect x="41" y="208" width="378" height="26" class="row-alt"/>
+  <rect x="41" y="260" width="378" height="26" class="row-alt"/>
+
+  <text x="52" y="147" class="pk">PK</text><text x="84" y="147" class="col" font-weight="700">id</text><text x="210" y="147" class="type">INT UNSIGNED</text><text x="410" y="147" class="flag" text-anchor="end">NN, AI</text>
+  <text x="84" y="173" class="col">full_name</text><text x="210" y="173" class="type">VARCHAR(100)</text><text x="410" y="173" class="flag" text-anchor="end">NN</text>
+  <text x="52" y="199" class="pk">UQ</text><text x="84" y="199" class="col">email</text><text x="210" y="199" class="type">VARCHAR(255)</text><text x="410" y="199" class="flag" text-anchor="end">NN, UNIQUE</text>
+  <text x="84" y="225" class="col">phone</text><text x="210" y="225" class="type">VARCHAR(20)</text><text x="410" y="225" class="flag" text-anchor="end">NN</text>
+  <text x="84" y="251" class="col">date_of_birth</text><text x="210" y="251" class="type">DATE</text><text x="410" y="251" class="flag" text-anchor="end">NULL</text>
+  <text x="84" y="277" class="col">created_at</text><text x="210" y="277" class="type">DATETIME</text><text x="410" y="277" class="flag" text-anchor="end">NN, DEFAULT now</text>
+  <text x="84" y="303" class="col">updated_at</text><text x="210" y="303" class="type">DATETIME</text><text x="410" y="303" class="flag" text-anchor="end">NN, ON UPDATE now</text>
+
+  <line x1="41" y1="316" x2="419" y2="316" class="sep"/>
+  <text x="52" y="336" class="ckhead">Constraints</text>
+  <text x="52" y="354" class="ck">CHECK chk_patients_name : TRIM(full_name) &lt;&gt; ''</text>
+  <text x="52" y="370" class="ck">CHECK chk_patients_email: email LIKE '%_@_%._%'</text>
+
+  <!-- ============================ DOCTORS ============================= -->
+  <rect x="980" y="90" width="380" height="316" rx="8" class="box"/>
+  <path d="M988 90 h364 a8 8 0 0 1 8 8 v32 h-380 v-32 a8 8 0 0 1 8 -8z" class="head-d"/>
+  <text x="996" y="117" class="tname">doctors</text>
+
+  <rect x="981" y="156" width="378" height="26" class="row-alt"/>
+  <rect x="981" y="208" width="378" height="26" class="row-alt"/>
+  <rect x="981" y="260" width="378" height="26" class="row-alt"/>
+
+  <text x="992" y="147" class="pk">PK</text><text x="1024" y="147" class="col" font-weight="700">id</text><text x="1160" y="147" class="type">INT UNSIGNED</text><text x="1350" y="147" class="flag" text-anchor="end">NN, AI</text>
+  <text x="1024" y="173" class="col">full_name</text><text x="1160" y="173" class="type">VARCHAR(100)</text><text x="1350" y="173" class="flag" text-anchor="end">NN</text>
+  <text x="992" y="199" class="pk">UQ</text><text x="1024" y="199" class="col">email</text><text x="1160" y="199" class="type">VARCHAR(255)</text><text x="1350" y="199" class="flag" text-anchor="end">NN, UNIQUE</text>
+  <text x="1024" y="225" class="col">specialty</text><text x="1160" y="225" class="type">VARCHAR(100)</text><text x="1350" y="225" class="flag" text-anchor="end">NN</text>
+  <text x="1024" y="251" class="col">consultation_fee</text><text x="1160" y="251" class="type">DECIMAL(10,2)</text><text x="1350" y="251" class="flag" text-anchor="end">NN</text>
+  <text x="1024" y="277" class="col">room</text><text x="1160" y="277" class="type">VARCHAR(10)</text><text x="1350" y="277" class="flag" text-anchor="end">NN</text>
+  <text x="1024" y="303" class="col">created_at</text><text x="1160" y="303" class="type">DATETIME</text><text x="1350" y="303" class="flag" text-anchor="end">NN</text>
+  <text x="1024" y="329" class="col">updated_at</text><text x="1160" y="329" class="type">DATETIME</text><text x="1350" y="329" class="flag" text-anchor="end">NN</text>
+
+  <line x1="981" y1="342" x2="1359" y2="342" class="sep"/>
+  <text x="992" y="362" class="ckhead">Constraints</text>
+  <text x="992" y="380" class="ck">CHECK chk_doctors_fee : consultation_fee &gt;= 0</text>
+  <text x="992" y="396" class="ck">CHECK chk_doctors_name: TRIM(full_name) &lt;&gt; ''</text>
+
+  <!-- ========================== APPOINTMENTS ========================== -->
+  <rect x="470" y="90" width="460" height="594" rx="8" class="box"/>
+  <path d="M478 90 h444 a8 8 0 0 1 8 8 v32 h-460 v-32 a8 8 0 0 1 8 -8z" class="head-a"/>
+  <text x="486" y="117" class="tname">appointments</text>
+
+  <rect x="471" y="156" width="458" height="26" class="row-alt"/>
+  <rect x="471" y="208" width="458" height="26" class="row-alt"/>
+  <rect x="471" y="260" width="458" height="26" class="row-alt"/>
+  <rect x="471" y="312" width="458" height="26" class="row-alt"/>
+  <rect x="471" y="364" width="458" height="26" class="row-alt"/>
+  <rect x="471" y="416" width="458" height="26" class="row-alt"/>
+
+  <text x="482" y="147" class="pk">PK</text><text x="514" y="147" class="col" font-weight="700">id</text><text x="650" y="147" class="type">INT UNSIGNED</text><text x="920" y="147" class="flag" text-anchor="end">NN, AI</text>
+  <text x="482" y="173" class="fk">FK</text><text x="514" y="173" class="col">patient_id</text><text x="650" y="173" class="type">INT UNSIGNED</text><text x="920" y="173" class="flag" text-anchor="end">NN → patients.id</text>
+  <text x="482" y="199" class="fk">FK</text><text x="514" y="199" class="col">doctor_id</text><text x="650" y="199" class="type">INT UNSIGNED</text><text x="920" y="199" class="flag" text-anchor="end">NN → doctors.id</text>
+  <text x="514" y="225" class="col">appt_date</text><text x="650" y="225" class="type">DATE</text><text x="920" y="225" class="flag" text-anchor="end">NN</text>
+  <text x="514" y="251" class="col">appt_time</text><text x="650" y="251" class="type">TIME</text><text x="920" y="251" class="flag" text-anchor="end">NN</text>
+  <text x="514" y="277" class="col">status</text><text x="650" y="277" class="type">ENUM('BOOKED','CANCELLED')</text><text x="920" y="277" class="flag" text-anchor="end">NN</text>
+  <text x="514" y="303" class="col">amount_paid</text><text x="650" y="303" class="type">DECIMAL(10,2)</text><text x="920" y="303" class="flag" text-anchor="end">NN</text>
+  <text x="514" y="329" class="col">booked_at</text><text x="650" y="329" class="type">DATETIME</text><text x="920" y="329" class="flag" text-anchor="end">NN</text>
+  <text x="514" y="355" class="col">cancelled_at</text><text x="650" y="355" class="type">DATETIME</text><text x="920" y="355" class="flag" text-anchor="end">NULL</text>
+  <text x="514" y="381" class="col">refund_percent</text><text x="650" y="381" class="type">TINYINT UNSIGNED</text><text x="920" y="381" class="flag" text-anchor="end">NULL</text>
+  <text x="514" y="407" class="col">refund_amount</text><text x="650" y="407" class="type">DECIMAL(10,2)</text><text x="920" y="407" class="flag" text-anchor="end">NULL</text>
+  <text x="482" y="433" class="gen">GEN</text><text x="514" y="433" class="col">active_slot</text><text x="650" y="433" class="type">TINYINT STORED</text><text x="920" y="433" class="flag" text-anchor="end">= IF(status='BOOKED',1,NULL)</text>
+
+  <line x1="471" y1="446" x2="929" y2="446" class="sep"/>
+  <text x="482" y="466" class="ckhead">Constraints</text>
+  <text x="482" y="486" class="ck" font-weight="700" fill="#b45309">UNIQUE (doctor_id, appt_date, appt_time, active_slot)</text>
+  <text x="482" y="504" class="ck">CHECK chk_appt_working_hours: appt_time BETWEEN '09:00' AND '16:30'</text>
+  <text x="482" y="520" class="ck">CHECK chk_appt_slot_boundary: MINUTE(appt_time) IN (0,30), SECOND = 0</text>
+  <text x="482" y="536" class="ck">CHECK chk_appt_amount_paid  : amount_paid &gt;= 0</text>
+  <text x="482" y="552" class="ck">CHECK chk_appt_refund_percent: refund_percent IN (0, 50, 100)</text>
+  <text x="482" y="568" class="ck">CHECK chk_appt_refund_amount: 0 &lt;= refund_amount &lt;= amount_paid</text>
+  <text x="482" y="584" class="ck">CHECK chk_appt_status_consistency:</text>
+  <text x="500" y="600" class="ck">BOOKED → cancelled_at, refund_* all NULL</text>
+  <text x="500" y="616" class="ck">CANCELLED → cancelled_at, refund_* all NOT NULL</text>
+  <text x="482" y="638" class="ck">FK ON DELETE RESTRICT, ON UPDATE CASCADE (both FKs)</text>
+  <text x="482" y="656" class="ck">INDEX (patient_id, appt_date, appt_time)</text>
+  <text x="482" y="672" class="ck">INDEX (doctor_id, appt_date, status)</text>
+
+  <!-- ========================== RELATIONSHIPS ========================= -->
+  <!-- patients.id (1) -> appointments.patient_id (N) -->
+  <path d="M420 143 H445 V169 H470" class="rel"/>
+  <line x1="428" y1="135" x2="428" y2="151" class="rel"/>
+  <line x1="434" y1="135" x2="434" y2="151" class="rel"/>
+  <line x1="456" y1="169" x2="470" y2="161" class="rel"/>
+  <line x1="456" y1="169" x2="470" y2="177" class="rel"/>
+  <text x="426" y="128" class="card">1</text>
+  <text x="452" y="196" class="card">N</text>
+
+  <!-- doctors.id (1) -> appointments.doctor_id (N) -->
+  <path d="M980 143 H955 V195 H930" class="rel"/>
+  <line x1="972" y1="135" x2="972" y2="151" class="rel"/>
+  <line x1="966" y1="135" x2="966" y2="151" class="rel"/>
+  <line x1="944" y1="195" x2="930" y2="187" class="rel"/>
+  <line x1="944" y1="195" x2="930" y2="203" class="rel"/>
+  <text x="966" y="128" class="card">1</text>
+  <text x="940" y="222" class="card">N</text>
+
+  <text x="40" y="410" class="relabel">A patient has 0..N appointments;</text>
+  <text x="40" y="426" class="relabel">each appointment belongs to exactly 1 patient.</text>
+  <text x="980" y="436" class="relabel">A doctor has 0..N appointments;</text>
+  <text x="980" y="452" class="relabel">each appointment belongs to exactly 1 doctor.</text>
+
+  <!-- ===================== DOUBLE-BOOKING CALLOUT ===================== -->
+  <rect x="40" y="700" width="890" height="160" rx="8" class="callout"/>
+  <text x="58" y="726" class="callout-h">Rule: a doctor cannot have two appointments at the same date/time</text>
+  <text x="58" y="750" class="callout-t">UNIQUE (doctor_id, appt_date, appt_time, active_slot) — active_slot is 1 while BOOKED and NULL once CANCELLED.</text>
+  <text x="58" y="770" class="callout-t">• Two BOOKED rows for the same doctor + date + time would both have active_slot = 1 → rejected by MySQL (ER_DUP_ENTRY).</text>
+  <text x="58" y="790" class="callout-t">• NULLs never collide in a UNIQUE index, so any number of CANCELLED rows can share the slot</text>
+  <text x="58" y="808" class="callout-t">   → the cancelled slot becomes bookable again while the cancellation + refund record is kept.</text>
+  <text x="58" y="832" class="callout-t">The daily cap (max 12 per doctor per day) and "future only" cannot be CHECK constraints (they need other rows / NOW()),</text>
+  <text x="58" y="850" class="callout-t">so they are enforced in the booking transaction (SELECT … FOR UPDATE on the doctor row).</text>
+
+  <!-- ============================== LEGEND ============================ -->
+  <rect x="960" y="700" width="400" height="160" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="978" y="726" class="ckhead">Legend</text>
+  <text x="978" y="750" class="pk">PK</text><text x="1012" y="750" class="legend">primary key</text>
+  <text x="1140" y="750" class="fk">FK</text><text x="1172" y="750" class="legend">foreign key</text>
+  <text x="978" y="772" class="pk">UQ</text><text x="1012" y="772" class="legend">unique</text>
+  <text x="1140" y="772" class="gen">GEN</text><text x="1172" y="772" class="legend">generated column</text>
+  <text x="978" y="794" class="flag">NN</text><text x="1012" y="794" class="legend">NOT NULL · AI = AUTO_INCREMENT</text>
+  <line x1="980" y1="820" x2="990" y2="820" class="rel"/><line x1="984" y1="813" x2="984" y2="827" class="rel"/><line x1="988" y1="813" x2="988" y2="827" class="rel"/>
+  <text x="1000" y="825" class="legend">exactly one</text>
+  <line x1="1120" y1="820" x2="1150" y2="820" class="rel"/><line x1="1136" y1="820" x2="1150" y2="812" class="rel"/><line x1="1136" y1="820" x2="1150" y2="828" class="rel"/>
+  <text x="1160" y="825" class="legend">many (N)</text>
+  <text x="978" y="848" class="legend">CHECK constraints listed under each table</text>
+</svg>
