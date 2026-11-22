@@ -1,0 +1,28 @@
+{
+  "name": "medibook-backend",
+  "version": "1.0.0",
+  "description": "MediBook clinic appointment booking API (Express, MySQL, Redis)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "worker": "node src/worker.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^4.22.3",
+    "ioredis": "^6.0.0",
+    "mysql2": "^3.24.6"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
