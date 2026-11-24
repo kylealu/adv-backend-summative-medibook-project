@@ -10,14 +10,19 @@
  * inside "24–48 hours", so it also gets 50 %.
  */
 const HOUR_MS = 60 * 60 * 1000;
+const FULL_REFUND_MIN_HOURS = 48; // notice must be MORE than this for 100 %
+const HALF_REFUND_MIN_HOURS = 24; // notice of at least this gets 50 %
+const FULL_REFUND_PERCENT = 100;
+const HALF_REFUND_PERCENT = 50;
+const NO_REFUND_PERCENT = 0;
 
 function refundPercentForNotice(hoursNotice) {
   if (typeof hoursNotice !== 'number' || Number.isNaN(hoursNotice)) {
     throw new TypeError('hoursNotice must be a number');
   }
-  if (hoursNotice > 48) return 100;
-  if (hoursNotice >= 24) return 50;
-  return 0;
+  if (hoursNotice > FULL_REFUND_MIN_HOURS) return FULL_REFUND_PERCENT;
+  if (hoursNotice >= HALF_REFUND_MIN_HOURS) return HALF_REFUND_PERCENT;
+  return NO_REFUND_PERCENT;
 }
 
 /**

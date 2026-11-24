@@ -64,7 +64,7 @@ function daySlots() {
  * Returns { ok: true, date, time, start } with normalised "YYYY-MM-DD" / "HH:MM:00",
  * or { ok: false, code, message } where code is one of:
  *   INVALID_FORMAT        -> malformed input           (HTTP 400)
- *   OUTSIDE_WORKING_HOURS -> before 09:00 / 16:30 onward is closed  (HTTP 422)
+ *   OUTSIDE_WORKING_HOURS -> before 09:00 or after 16:30 (last slot) (HTTP 422)
  *   NOT_ON_SLOT_BOUNDARY  -> not :00 or :30           (HTTP 422)
  *   IN_PAST               -> not strictly in the future (HTTP 422)
  */
