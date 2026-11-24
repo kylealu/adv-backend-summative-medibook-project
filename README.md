@@ -6,6 +6,10 @@ Backend for a community clinic: patients book 30-minute slots with doctors (09:0
 
 > The original assignment brief is preserved in [`ASSIGNMENT.md`](ASSIGNMENT.md).
 
+## Demo video
+
+▶️ [Watch the walkthrough on Google Drive](https://drive.google.com/drive/folders/1tUnmhtX1Sg4upuLPTe5QN7ieYInxbSTO?usp=drive_link)
+
 ---
 
 ## Contents
